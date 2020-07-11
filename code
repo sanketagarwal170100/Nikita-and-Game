@@ -1,0 +1,51 @@
+# nikita and game
+
+def nikita_and_game(arr):
+    if sum(arr)%2:
+        return 0
+    if sum(arr)//2== 0:
+        if arr != [0 for j in range(0,len(arr))]:
+            #print("A")
+            return 0
+        else:
+            #print("B")
+            return len(arr)-1
+
+    if len(arr)==1 or len(arr)==0:
+        #print("C")
+        return 0
+    low=0
+    high=len(arr)
+    high-=1
+    #print(arr)
+    while high>=low:
+        mid=(high+low)//2
+        
+        #print(f"high--{high} low-----{low}  mid----{mid}")
+        if sum(arr[0:mid])==sum(arr[mid:]):
+            #print("yes")
+            break
+        elif sum(arr[0:mid])>=sum(arr[mid:]):
+            high=mid-1
+        else:
+            low=mid+1
+  
+    if mid>=len(arr) or high<low :
+        #print("D")
+        return 0
+    #print(f"high--{high} low-----{low}  mid----{x}")
+    return 1+max(nikita_and_game(arr[0:mid]),nikita_and_game(arr[mid:]))
+    
+    
+    
+    
+    
+    
+for _ in range(int(input())):
+    n=int(input())
+    arr=list(map(int,input().split(" ")))
+    #count=0
+    result=nikita_and_game(arr)
+    print(result)
+            
+        
